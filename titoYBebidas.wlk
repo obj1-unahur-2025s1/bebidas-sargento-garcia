@@ -1,30 +1,31 @@
 object tito {
   var ultimaBebida = null
-  var cantidadConsumida = 0
+  var cantidadDosisConsumida = 0
   var estado = null
   const inerciaBase = 490
   
   method consumir(cantidad, bebida) {
     ultimaBebida = bebida
-    cantidadConsumida = cantidad
+    cantidadDosisConsumida = cantidad
     estado = bebida.efecto()
+    console.println("esta rica no?")
   }
-  method velocidad() =  ultimaBebida.rendimiento(self) * inerciaBase / self.peso()
+  method velocidad() =  ultimaBebida.rendimiento(cantidadDosisConsumida) * inerciaBase / self.peso()
   method peso() = 70
   method ultimaBebida() = ultimaBebida
-  method cantidadConsumida() = cantidadConsumida
+  method cantidadConsumida() = cantidadDosisConsumida
   method estadoActual() = estado
 }
 
 object whisky {
-  method rendimiento(tito) = 0.9 ** tito.cantidadConsumida()
+  method rendimiento(dosis) = 0.9 ** dosis
   method efecto() = "sueño, mareo y jaquecas"
 }
 object terere {
-  method rendimiento(tito) = (0.1 * tito.cantidadConsumida()).max(1)
+  method rendimiento(dosis) = (0.1 * dosis).max(1)
   method efecto() = "diurético, laxante y estimulante"
 }
 object cianuro {
-  method rendimiento(tito) = 0 //* tito.cantidadConsumida()
+  method rendimiento(dosis) = 0 * dosis
   method efecto() = "moribundo,lleno de abulias y de marasmo"
 }

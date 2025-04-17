@@ -1,0 +1,18 @@
+import titoYBebidas.*
+
+test "tito toma una cantidad de cianuro y queda con una velocidad de 0" {
+  tito.consumir(2, cianuro)
+  assert.equals(0, tito.velocidad())
+}
+test "tito toma mas de 10 tereres y su velocidad es mayor a 7" {
+  tito.consumir(16, terere)
+  assert.that(tito.velocidad() >7)
+}
+test "tito toma terere y su velcidad no es mayor a 7" {
+  tito.consumir(1, terere)
+  assert.notThat(tito.velocidad() >7)
+}
+test "tito toma whisky y le provoca un estado de sueño, mareo y jaquecas" {
+  tito.consumir(1, whisky)
+  assert.equals("sueño, mareo y jaquecas", tito.estadoActual())
+}
